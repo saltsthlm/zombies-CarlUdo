@@ -24,11 +24,7 @@ const createRoom = (capacity: number) => {
   let _zombiesInRoom: string[] = [];
 
   return {
-    isFull: () => {
-      if (_capacity === 0 || _capacity === _zombiesInRoom.length) return true;      
-      
-      return false;
-    },
+    isFull: () => _capacity === _zombiesInRoom.length,
     addZombie: (zombie: string) => {
       if (isValidString(zombie)) {
         if (_capacity === _zombiesInRoom.length) {
