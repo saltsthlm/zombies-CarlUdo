@@ -14,7 +14,7 @@ type Room = {
   isFull: () => boolean;
   addZombie: (zombie: string) => void;
   zombiesInRoom: () => string[];
-  noZombiesInRoom: () => number;
+  numberOfZombies: () => number;
   spaceLeft: () => number; 
 };
 
@@ -38,7 +38,7 @@ const createRoom = (capacity: number) => {
       }
     },
     zombiesInRoom: () => _zombiesInRoom,
-    noZombiesInRoom: () => _zombiesInRoom.length, 
+    numberOfZombies: () => _zombiesInRoom.length, 
     spaceLeft: () => capacity - _zombiesInRoom.length,
   };
 };
@@ -94,10 +94,10 @@ test("second zombie consumes first zombie when added to a one-roomer", () => {
   room.addZombie('Bloody Mary');
 
   const zombieInRoom = room.zombiesInRoom();
-  const noZombiesInRoom = room.noZombiesInRoom();
+  const numberOfZombies = room.numberOfZombies();
   
   deepEqual(zombieInRoom, ['Bloody Mary']);
-  equal(noZombiesInRoom, 1)
+  equal(numberOfZombies, 1)
 });
 
 test("three-roomer has one space left when two zombies are added", () => {
