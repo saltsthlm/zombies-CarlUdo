@@ -30,7 +30,8 @@ const createRoom = (capacity: number) => {
         return `Error: Wrong format. No zombie was added to the room since you tried to add "${zombie}".`;  
       
       if (_capacity === _zombiesInRoom.length) {
-        _zombiesInRoom.splice(0, 1, zombie);
+        _zombiesInRoom.shift();
+        _zombiesInRoom.push(zombie);
       } else {
         _zombiesInRoom.push(zombie);
       }
@@ -86,16 +87,18 @@ test("two-roomer is not full when a zombie is added", () => {
 });
 
 test("second zombie consumes first zombie when added to a one-roomer", () => {
-  const room = createRoom(1) as ZombieReturnObj;
+  const room = createRoom(2) as ZombieReturnObj;
 
   room.addZombie('Ugh Lee');
   room.addZombie('Bloody Mary');
+  room.addZombie('Calle');
+  console.log('Second********** ', room.zombiesInRoom())
 
   const zombieInRoom = room.zombiesInRoom()[0];
   const noZombiesInRoom = room.noZombiesInRoom();
   
   equal(zombieInRoom, 'Bloody Mary');
-  equal(noZombiesInRoom, 1)
+  equal(noZombiesInRoom, 2)
 });
 
 test("three-roomer has one space left when two zombies are added", () => {
