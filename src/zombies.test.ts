@@ -32,10 +32,9 @@ const createRoom = (capacity: number) => {
       
       if (_capacity === _zombiesInRoom.length) {
         _zombiesInRoom.shift();
-        _zombiesInRoom.push(zombie);
-      } else {
-        _zombiesInRoom.push(zombie);
       }
+        
+      _zombiesInRoom.push(zombie);
     },
     zombiesInRoom: () => _zombiesInRoom,
     numberOfZombies: () => _zombiesInRoom.length, 
