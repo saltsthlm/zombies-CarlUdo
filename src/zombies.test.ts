@@ -1,3 +1,4 @@
+import { deepEqual } from "node:assert";
 import { ok, equal } from "node:assert/strict";
 import { test } from "node:test";
 
@@ -87,18 +88,16 @@ test("two-roomer is not full when a zombie is added", () => {
 });
 
 test("second zombie consumes first zombie when added to a one-roomer", () => {
-  const room = createRoom(2) as ZombieReturnObj;
+  const room = createRoom(1) as ZombieReturnObj;
 
   room.addZombie('Ugh Lee');
   room.addZombie('Bloody Mary');
-  room.addZombie('Calle');
-  console.log('Second********** ', room.zombiesInRoom())
 
-  const zombieInRoom = room.zombiesInRoom()[0];
+  const zombieInRoom = room.zombiesInRoom();
   const noZombiesInRoom = room.noZombiesInRoom();
   
-  equal(zombieInRoom, 'Bloody Mary');
-  equal(noZombiesInRoom, 2)
+  deepEqual(zombieInRoom, ['Bloody Mary']);
+  equal(noZombiesInRoom, 1)
 });
 
 test("three-roomer has one space left when two zombies are added", () => {
