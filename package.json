@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx tsx --test src/zombies.test.ts",
-    "watch-test": "npx tsx --test --watch src/zombies.test.ts"
+    "test": "tsx --test src/zombies.test.ts",
+    "watch-test": "tsx --test --watch src/zombies.test.ts"
   },
   "keywords": [],
   "author": "",
