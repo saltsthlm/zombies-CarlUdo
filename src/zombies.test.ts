@@ -26,15 +26,16 @@ const createRoom = (capacity: number) => {
   return {
     isFull: () => _capacity === _zombiesInRoom.length,
     addZombie: (zombie: string) => {
-      if (isValidString(zombie)) {
-        if (_capacity === _zombiesInRoom.length) {
-          _zombiesInRoom.splice(0, 1, zombie);
-        } else {
-          _zombiesInRoom.push(zombie);
-        }  
+      if (!isValidString(zombie)) {
+        console.log(`*** No zombie was added to the room since you tried to add "${zombie}". ***`);  
+        return;
+      } 
+      
+      if (_capacity === _zombiesInRoom.length) {
+        _zombiesInRoom.splice(0, 1, zombie);
       } else {
-        console.log(`*** No zombie was added to the room since you tried to add "${zombie}". ***`);
-      }          
+        _zombiesInRoom.push(zombie);
+      }
     },
     zombiesInRoom: () => _zombiesInRoom,
     noZombiesInRoom: () => _zombiesInRoom.length, 
