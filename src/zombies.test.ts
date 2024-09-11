@@ -10,7 +10,7 @@ const isValidString = (name: string): name is string => {
   return typeof name === 'string' && name.length > 0;
 };
 
-type ZombieReturnObj = {
+type Room = {
   isFull: () => boolean;
   addZombie: (zombie: string) => void;
   zombiesInRoom: () => string[];
@@ -44,7 +44,7 @@ const createRoom = (capacity: number) => {
 };
 
 test("room is full", () => {
-  const room = createRoom(0) as ZombieReturnObj;
+  const room = createRoom(0) as Room;
 
   const result = room.isFull();  
 
@@ -52,7 +52,7 @@ test("room is full", () => {
 });
 
 test("empty room that fits one zombie is not full", () => {
-  const room = createRoom(1) as ZombieReturnObj;
+  const room = createRoom(1) as Room;
 
   const result = room.isFull();
 
@@ -60,7 +60,7 @@ test("empty room that fits one zombie is not full", () => {
 });
 
 test("empty room cannot fit any zombies", () => {
-  const room = createRoom(0) as ZombieReturnObj;
+  const room = createRoom(0) as Room;
 
   const result = room.isFull();
 
@@ -68,7 +68,7 @@ test("empty room cannot fit any zombies", () => {
 });
 
 test("one-roomer becomes full when a zombie is added", () => {
-  const room = createRoom(1) as ZombieReturnObj;
+  const room = createRoom(1) as Room;
 
   room.addZombie('Ugh Lee');
 
@@ -78,7 +78,7 @@ test("one-roomer becomes full when a zombie is added", () => {
 });
 
 test("two-roomer is not full when a zombie is added", () => {
-  const room = createRoom(2) as ZombieReturnObj;
+  const room = createRoom(2) as Room;
 
   room.addZombie('Ugh Lee');
 
@@ -88,7 +88,7 @@ test("two-roomer is not full when a zombie is added", () => {
 });
 
 test("second zombie consumes first zombie when added to a one-roomer", () => {
-  const room = createRoom(1) as ZombieReturnObj;
+  const room = createRoom(1) as Room;
 
   room.addZombie('Ugh Lee');
   room.addZombie('Bloody Mary');
@@ -101,7 +101,7 @@ test("second zombie consumes first zombie when added to a one-roomer", () => {
 });
 
 test("three-roomer has one space left when two zombies are added", () => {
-  const room = createRoom(3) as ZombieReturnObj;
+  const room = createRoom(3) as Room;
 
   room.addZombie('Ugh Lee');
   room.addZombie('Bloody Mary');
@@ -118,7 +118,7 @@ test("argument is of wrong type", () => {
 });
 
 test("zombie is in wrong format", () => {
-  const room = createRoom(1) as ZombieReturnObj;
+  const room = createRoom(1) as Room;
 
   const result = room.addZombie('');
   
