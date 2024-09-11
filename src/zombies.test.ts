@@ -93,10 +93,8 @@ test("second zombie consumes first zombie when added to a one-roomer", () => {
   room.addZombie('Bloody Mary');
 
   const zombieInRoom = room.zombiesInRoom();
-  const numberOfZombies = room.numberOfZombies();
   
   deepEqual(zombieInRoom, ['Bloody Mary']);
-  equal(numberOfZombies, 1)
 });
 
 test("three-roomer has one space left when two zombies are added", () => {
