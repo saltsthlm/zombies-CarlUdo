@@ -26,10 +26,8 @@ const createRoom = (capacity: number) => {
   return {
     isFull: () => _capacity === _zombiesInRoom.length,
     addZombie: (zombie: string) => {
-      if (!isValidString(zombie)) {
-        console.log(`*** No zombie was added to the room since you tried to add "${zombie}". ***`);  
-        return;
-      } 
+      if (!isValidString(zombie)) 
+        return `Error: Wrong format. No zombie was added to the room since you tried to add "${zombie}".`;  
       
       if (_capacity === _zombiesInRoom.length) {
         _zombiesInRoom.splice(0, 1, zombie);
@@ -115,4 +113,12 @@ test("argument is of wrong type", () => {
   const result = createRoom(1.23);
   
   equal(result, `Error: Parameter 'capacity' must be a positive integer`);
+});
+
+test("zombie is in wrong format", () => {
+  const room = createRoom(1) as ZombieReturnObj;
+
+  const result = room.addZombie('');
+  
+  equal(result, `Error: Wrong format. No zombie was added to the room since you tried to add "".`);
 });
